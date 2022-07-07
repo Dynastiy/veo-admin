@@ -4,7 +4,7 @@ import Toastify from 'toastify-js'
 Vue.use(Toastify)
 
 import axios from "axios";
-const BASE_URL = 'https://api.veohmo.com';
+const BASE_URL = 'http://api.veohmo.com';
 
 const http = axios.create({
     baseURL: BASE_URL,
