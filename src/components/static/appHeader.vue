@@ -109,7 +109,7 @@ export default {
     },
     computed:{
       getUser(){
-        return this.$store.getters.getUser;
+        return this.$store.getters["auth/getUser"];
       }
     }
     //  created: {
