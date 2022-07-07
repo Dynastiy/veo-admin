@@ -5,7 +5,10 @@
 
 /* Font */
 
-@import url('@/assets/font/stylesheet.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* @import url('@/assets/font/stylesheet.css'); */
+
 *,
 html {
     padding: 0;
@@ -20,27 +23,27 @@ html {
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
     /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--main-color);
+    background: var(--accent-bg);
     /* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--main-color);
     /* color of the scroll thumb */
     border-radius: 20px;
     /* roundness of the scroll thumb */
-    border: 3px solid var(--main-color);
+    border: 1px solid var(--accent-bg);
     /* creates padding around scroll thumb */
 }
 
 :root {
-    /* --primary-font-family: 'Lato', sans-serif; */
-    --primary-font-family: GT Walsheim Pro, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, Tahoma, sans-serif !important;
+    --primary-font-family: 'Poppins', sans-serif;
+    /* --primary-font-family: GT Walsheim Pro, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, Tahoma, sans-serif !important; */
     /* Brand Colors  */
     --main-color: #2A9871;
     /* --secondary-color: #f0b90b; */
@@ -72,4 +75,5 @@ h6,
 p {
     margin: 0 !important;
     padding: 0 !important;
+    color: #000;
 }

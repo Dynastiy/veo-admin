@@ -16,17 +16,10 @@ export default {
     components: {
         AppDrawer, AppHeader
     },
-  //    async created(){
-  //       if (!this.$store.getters.isLoggedIn) {
-  //           this.$toastify({
-  //         text: `Please Login`,
-  //         className: "alert",
-  //         style: {
-  //           background: "red",
-  //         },
-  //       }).showToast();
-  //     this.$router.push("/sign-in");
-  //   }
-  //  }
+     async created(){
+        console.log(this.$store.getters['auth/getUser'])
+        let loggedIn = this.$store.getters['auth/isLoggedIn']
+        console.log(loggedIn);
+   }
 }
 </script>

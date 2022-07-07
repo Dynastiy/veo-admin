@@ -61,32 +61,19 @@ export default {
   },
     methods: {
         async login() {
-      this.loading = true;
-      // try {
-      //   let res = await axios.post("https://api.risingwork.com/api/auth/signin", this.credentials);
-      //   const token = res.data.token
-      //   const user = res.data.user
-      //   this.$store.dispatch("login", { token, user });
-      //   console.log(res);
-      //   this.$toastify({
-      //     text: `Welcome ${res.data.user.first_name}  ${res.data.user.last_name}`,
-      //     className: "info",
-      //     style: {
-      //       background: "green",
-      //     },
-      //   }).showToast();
-
-      //     this.$router.push('/')
-        
-      // } catch (error) {
-      //   console.log(error.response.data.message);
-      //   this.errorMsg = error.response.data.message;
-      // }
-
-      this.$router.push('/')
-      this.loading = false;
-      this.credentials = {}
+        this.loading = true;
+        this.$store.dispatch('auth/userLogin', this.credentials)
+        this.$router.push('/')
+        this.loading = false;
+        this.credentials = {}
     },
+    },
+    created(){
+      let loggedIn = this.$store.getters['auth/isLoggedIn']
+        console.log(loggedIn);
+        // if (loggedIn) {
+        //   this.$router.push('/')
+        // }
     }
 }
 </script>

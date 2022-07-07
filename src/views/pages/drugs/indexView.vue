@@ -32,7 +32,7 @@
               @click="addServiceModal = !addServiceModal"
             >
               <span> <i class="el-icon-circle-plus-outline"></i> </span>
-              <span class="small">Add Service</span>
+              <span class="small">Add Drug</span>
             </button>
           </div>
         </div>
@@ -47,17 +47,17 @@
               <thead>
                 <tr>
                   <th scope="col"><input type="checkbox" name="" id="" /></th>
-                  <th scope="col">SERVICE NAME</th>
+                  <th scope="col">DRUG NAME</th>
                   <th scope="col">DESCRIPTION</th>
                   <th scope="col">DATE CREATED</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="service in services.data" :key="service.id">
+                <tr v-for="drug in drugs.data" :key="drug.id">
                   <td><input type="checkbox" name="" id="" /></td>
-                  <td role="button" @click="viewService(service)">{{ service.name }}</td>
-                  <td>{{ sliceHash2(service.description) }}</td>
-                  <td>{{ timeStamp(service.created_at) }}</td>
+                  <td role="button" @click="viewDrug(drug)">{{ drug.name }}</td>
+                  <td>{{ sliceHash2(drug.description) }}</td>
+                  <td>{{ timeStamp(drug.created_at) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -120,18 +120,18 @@ export default {
     closeViewServiceModal(){
         this.viewServiceModal = false
     },
-    viewService(service){
-        this.$store.dispatch("servicesModule/getServiceById", service.id);
+    viewDrug(drug){
+        this.$store.dispatch("drugsModule/getDrugById", drug.id);
         this.viewServiceModal = true
     }
   },
   components: { AddService, ViewService },
   beforeMount() {
-    this.$store.dispatch("servicesModule/getServices");
+    this.$store.dispatch("drugsModule/getDrugs");
   },
   computed: {
-    services() {
-      return this.$store.getters["servicesModule/getServices"];
+    drugs() {
+      return this.$store.getters["drugsModule/getDrugs"];
     },
   },
 };

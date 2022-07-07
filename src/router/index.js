@@ -54,7 +54,7 @@ const routes = [{
                     import ( /* webpackChunkName: "about" */ '../views/pages/hospitals/indexView.vue')
             },
             {
-                path: '/hospitals/_id',
+                path: '/hospitals/:id',
                 name: 'hospital-details',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
@@ -81,13 +81,22 @@ const routes = [{
                     import ( /* webpackChunkName: "about" */ '../views/pages/services/indexView.vue')
             },
             {
-                path: '/pharmacies',
-                name: 'pharmacies',
+                path: '/service-prices',
+                name: 'service-prices',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/pharmacies/indexView.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/prices/indexPage.vue')
+            },
+            {
+                path: '/drugs',
+                name: 'drugs',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/drugs/indexView.vue')
             },
             {
                 path: '/enrollees',
@@ -98,6 +107,17 @@ const routes = [{
                 component: () =>
                     import ( /* webpackChunkName: "about" */ '../views/pages/enrollees/indexView.vue')
             },
+            {
+                path: '/groups',
+                name: 'groups',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/groups/indexView.vue')
+            },
+
+
         ]
     },
     {

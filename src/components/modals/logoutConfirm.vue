@@ -41,17 +41,10 @@ export default {
   },
   methods: {
     async logout() {
-      
-    this.loading = true;
-      try {
-        let res = await this.$axios.post("/auth/signout/");
-        console.log(res);
-        this.$store.dispatch("logout");
-      } catch (error) {
-        console.log(error.response);
-      }
+      this.loading = true;
+      this.$store.dispatch('auth/userLogout');
       this.loading = false;
-      this.$router.replace("/sign-in");
+      this.$router.push("/sign-in");
     },
     close() {
       this.$emit("close");

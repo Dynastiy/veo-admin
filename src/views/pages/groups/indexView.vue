@@ -2,30 +2,27 @@
   <div>
     <div>
       <div class="d-flex align-items-center justify-content-between mb-3">
-        <h4>All Plans</h4>
+        <h4>All Groups</h4>
         <div
           class="d-flex align-items-center justify-content-end main--button"
-          @click="add_plan = !add_plan"
+          @click="create_group = !create_group"
           role="button"
           style="gap: 5px"
         >
           <span class="material-icons"> add_circle </span>
-          <span class="small">Add Plan</span>
+          <span class="small">Create Group</span>
         </div>
       </div>
       <div class="items">
+        <el-alert v-show="groups.data.length === 0 " title="No Group Created Yet" type="error"> </el-alert>
         <div
           class="category shadow-lg p-3 bg-white rounded-lg"
-          v-for="plan in plans.data"
-          :key="plan.id"
+          v-for="group in groups.data"
+          :key="group.id"
         >
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h6 class="text-uppercase mb-1">{{ plan.name }}</h6>
-              <p class="text-secondary small text-capitalize mb-2">
-                {{ plan.description }}
-              </p>
-              <h6>NGN{{ plan.price }}</h6>
+              <h5 class="text-capitalize mb-1">{{ group.name }}</h5>
             </div>
             <div class="mb-3">
               <div class="btn-group dropleft">
@@ -42,19 +39,19 @@
                     class="dropdown-item"
                     href="javascript:void(0)"
                     @click="edit_item = !edit_item"
-                    >Edit Plan</a
+                    >Edit group</a
                   >
                   <a
                     class="dropdown-item text-danger"
                     href="javascript:void(0)"
                     @click="deleteProductModal(item)"
-                    >Delete Plan</a
+                    >Delete group</a
                   > -->
                   <a
                     class="dropdown-item"
                     href="javascript:void(0)"
-                    @click="addPlanBenefit(plan)"
-                    >Add Plan Benefit</a
+                    @click="addGroupMember(group)"
+                    >Add Group Member</a
                   >
                 </div>
               </div>
@@ -64,17 +61,11 @@
       </div>
     </div>
 
-    <!-- Add item Modal  -->
-    <AddPlan v-show="add_plan" @close="closeAddModal"/>
+    <!-- Create Group Modal  -->
+    <CreateGroup @close="closeCreateGroup" v-show="create_group" />
 
-    <!-- Add Plan Benefits  -->
-    <AddPlanBenefit v-show="add_benefit" @close="closeBenefitModal"/>
-   
-   <!-- Edit item Modal  -->
-    
-
-    <!-- Confirm Delete Modal  -->
-    
+    <!-- Add Group Members  -->
+    <AddGroupMember @close="closeAddMember" v-show="addMember"/>
   </div>
 </template>
 
@@ -91,10 +82,9 @@ import {
   sliceContent,
   colorSplit,
 } from "@/plugins/filter.js";
-import AddPlan from "./modals/addPlan.vue";
-import AddPlanBenefit from "./modals/addPlanBenefit.vue";
+import CreateGroup from "./modals/createGroup.vue";
+import AddGroupMember from "./modals/addGroupMember.vue";
 export default {
-  components: { AddPlan, AddPlanBenefit },
   data() {
     return {
       dollarFilter,
@@ -107,29 +97,30 @@ export default {
       sliceHash2,
       sliceContent,
       colorSplit,
-      add_plan: false,
-      add_benefit: false
+      create_group: false,
+      addMember: false,
     };
   },
   methods: {
-    closeAddModal(){
-        this.add_plan = false
+    closeCreateGroup() {
+      this.create_group = false;
     },
-    closeBenefitModal(){
-        this.add_benefit = false
+    closeAddMember() {
+      this.addMember = false;
     },
-    addPlanBenefit(plan){
-        this.add_benefit = true
-        this.$store.dispatch("plansModule/getPlan", plan.id);
-    }
+    addGroupMember(group) {
+      this.addMember = true;
+      this.$store.dispatch("groupsModule/getGroup", group.id);
+    },
   },
   beforeMount() {
-    this.$store.dispatch("plansModule/getPlans");
+    this.$store.dispatch("groupsModule/getGroups");
   },
   computed: {
-    plans() {
-      return this.$store.getters["plansModule/getPlans"];
+    groups() {
+      return this.$store.getters["groupsModule/getGroups"];
     },
   },
+  components: { CreateGroup, AddGroupMember },
 };
 </script>

@@ -3,6 +3,15 @@ import Vuex from 'vuex';
 // import Axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
 
+// Modules 
+import auth from './modules/auth'
+import hospitalModule from './modules/hospital'
+import userModule from './modules/users'
+import plansModule from './modules/plans'
+import servicesModule from './modules/services'
+import drugsModule from './modules/drugs'
+import groupsModule from './modules/group'
+
 Vue.use(Vuex);
 
 const getDefaultState = () => {
@@ -53,5 +62,14 @@ export default new Vuex.Store({
         logout: ({ commit }) => {
             commit('RESET', '');
         }
-    }
+    },
+    modules: {
+        auth,
+        hospitalModule,
+        userModule,
+        plansModule,
+        servicesModule,
+        drugsModule,
+        groupsModule
+    },
 });
