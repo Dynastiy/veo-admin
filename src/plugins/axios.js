@@ -7,7 +7,7 @@ Vue.use(Toastify)
 
 import axios from "axios";
 // import router from '@/router'
-const BASE_URL = 'http://api.veohmo.com';
+const BASE_URL = 'https://api.veohmo.com';
 
 const instance = axios.create({
     baseURL: BASE_URL,
